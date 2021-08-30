@@ -51,13 +51,13 @@ block contents
         },
         onAdd: function() {
           if( !web3.isAddress(this.address) ) {
-            alert('Address is not valid.')
+            alert('올바른 주소를 입력하세요.')
             return false;
           }
 
           if( this.watchs.find(w => w.address.toLowerCase() === this.address.toLowerCase()) ) {
-            console.log('Aready exist');
-            alert('Adress already watched.');
+            console.log('aready exist');
+            alert('이미 등록되어 있습니다.');
             return false;
           }
 
@@ -72,6 +72,7 @@ block contents
               window.localStorage.setItem("watchs", JSON.stringify(this.watchs));
               this.address = "";
 
+              // 잔액 조회
               getBalance(watch.address).then(r => watch.balance = web3.fromWei(r, 'ether') + ' ETH');
            });
         }
@@ -116,9 +117,9 @@ block contents
 
     web3.eth.filter("latest", function(error, result){
       if (!error) {
-        console.log('Block created ', result);
+        console.log('block created!', result);
         app.watchs.forEach(w => getBalance(w.address).then(r => w.balance = web3.fromWei(r, 'ether') + ' ETH'));
-        //- filter(result);
+        //filter(result);
       }
     });
 
@@ -143,3 +144,10 @@ block contents
         });
       });
     }
+
+    
+    
+    
+
+    
+    
