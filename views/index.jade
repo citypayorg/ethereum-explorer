@@ -86,15 +86,15 @@ block contents
             a.d-inline-block.text-truncate(v-bind:href="'/tx/' + tx.hash", style="max-width:200px") {{ tx.hash }}
           td 
             a(v-bind:href="'/block/' + tx.blockNumber.toString(10)") {{ tx.blockNumber.toString(10) }}
-          td {{ web3.fromWei(tx.value, 'ether').toString(10) + ' ETH' }}
+          td {{ web3.fromWei(tx.value, 'c4ei').toString(10) + ' C4EI' }}
           td
             a.d-inline-block.text-truncate(v-bind:href="'/address/' + tx.from", style="max-width:150px") {{ tx.from }}
           td 
             span(v-if="tx.to === '0x0'") {{ tx.to }}
             a.d-inline-block.text-truncate(v-if="tx.to !== '0x0'", v-bind:href="'/address/' + tx.to", style="max-width:150px") {{ tx.to }}
           td {{ tx.gas.toString(10) }}
-          td {{ web3.fromWei(tx.gasPrice, 'ether').toString(10) + ' ETH' }}
-          td {{ web3.fromWei((tx.gas * tx.gasPrice), 'ether').toString(10) + ' ETH' }}
+          td {{ web3.fromWei(tx.gasPrice, 'c4ei').toString(10) + ' C4EI' }}
+          td {{ web3.fromWei((tx.gas * tx.gasPrice), 'c4ei').toString(10) + ' C4EI' }}
 
   script.
 
@@ -118,28 +118,40 @@ block contents
 
     function getNetwork() {
       return new Promise((res, rej) => {
-        web3.version.getNetwork((error, result) => {
+        web3.eth.net.getId((error, result) => {
           if(error) rej(error);
           else res(result);
         });
+        //- web3.version.getNetwork((error, result) => {
+        //-   if(error) rej(error);
+        //-   else res(result);
+        //- });
       });
     }
 
     function getNode() {
       return new Promise((res, rej) => {
-        web3.version.getNode((error, result) => {
+        web3.eth.getNodeInfo((error, result) => {
           if(error) rej(error);
           else res(result);
         });
+        //- web3.version.getNode((error, result) => {
+        //-   if(error) rej(error);
+        //-   else res(result);
+        //- });
       });
     }
 
     function getPeerCount() {
       return new Promise((res, rej) => {
-        web3.net.getPeerCount((error, result) => {
+        web3.eth.net.getPeerCount((error, result) => {
           if(error) rej(error);
           else res(result);
         });
+        //- web3.net.getPeerCount((error, result) => {
+        //-   if(error) rej(error);
+        //-   else res(result);
+        //- });
       });
     }
 
@@ -217,8 +229,8 @@ block contents
       getNetwork().then(r =>  self.network = r);
       getHashrate().then(r =>  self.hashrate = r);
       getPeerCount().then(r =>  self.peerCount = r);
-      //- getGasPrice().then(r =>  self.gasPrice = r.toString(10) + ' (' +  web3.fromWei(r, 'ether').toString(10) + ' ETH)');
-      getGasPrice().then(r =>  self.gasPrice = r.toString(10) + ' (' +  web3.fromWei(r, 'gwei').toString(10) + ' Gwei)');
+      getGasPrice().then(r =>  self.gasPrice = r.toString(10) + ' (' +  web3.fromWei(r, 'c4ei').toString(10) + ' C4EI)');
+      //getGasPrice().then(r =>  self.gasPrice = r.toString(10) + ' (' +  web3.fromWei(r, 'gwei').toString(10) + ' Gwei)');
 
       var blockNumber = await getBlockNumber();
       self.blockNumber = blockNumber;

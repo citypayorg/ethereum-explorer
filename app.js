@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 app.get('/', function (req, res, next) {
   res.render('index', {
-    title: 'The Ethereum Block Explorer'
+    title: 'The C4EI Block Explorer'
   });
 });
 

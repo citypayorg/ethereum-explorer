@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('ether-blockexplorer:server');
+var debug = require('debug')('c4ei-blockexplorer:server');
 var http = require('http');
 
 /**

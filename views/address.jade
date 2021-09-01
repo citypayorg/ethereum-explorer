@@ -92,9 +92,9 @@ block contents
     }
 
 
-    function getETHUSD(balance) {
+    function getC4EIUSD(balance) {
       return new Promise((res, rej) => {
-        $.getJSON("https://api.coinmarketcap.com/v1/ticker/ethereum/", function(json) {
+        $.getJSON("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum/", function(json) {
           var price = Number(json[0].price_usd);
           var ethusd = price.toFixed(2);
           var balanceusd = "$ " + (ethusd * balance);
@@ -108,7 +108,7 @@ block contents
       address = address || self.address;
 
       self.balance = await getBalance(address);
-      self.balance_eth = '(' + web3.fromWei(app.balance, 'ether').toString(10) + ' ETH)';
+      self.balance_eth = '(' + web3.fromWei(app.balance, 'c4ei').toString(10) + ' C4EI)';
 
       self.storage = await getStorageAt(address);
       self.code = await getCode(address);
@@ -117,7 +117,7 @@ block contents
 
       self.transactionCount = await getTransactionCount(address);
 
-      self.balance_usd = await getETHUSD(web3.fromWei(app.balance, 'ether'));
+      self.balance_usd = await getC4EIUSD(web3.fromWei(app.balance, 'c4ei'));
     }
 
     
