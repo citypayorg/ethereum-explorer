@@ -94,8 +94,10 @@ block contents
 
     function getC4EIUSD(balance) {
       return new Promise((res, rej) => {
-        $.getJSON("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum/", function(json) {
-          var price = Number(json[0].price_usd);
+        //- $.getJSON("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum", function(json) {
+        $.getJSON("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=klay-token", function(json) {
+          //- var price = Number(json[0].price_usd);
+          var price = Number(json[0].current_price);
           var ethusd = price.toFixed(2);
           var balanceusd = "$ " + (ethusd * balance);
           res(balanceusd);
