@@ -110,7 +110,7 @@ block contents
       address = address || self.address;
 
       self.balance = await getBalance(address);
-      self.balance_eth = '(' + web3.utils.fromWei(app.balance, 'gwei').toString(10) + ' C4EI)';
+      self.balance_eth = '(' + web3.utils.toBN(app.balance, 'gwei').toString(10) + ' C4EI)';
 
       self.storage = await getStorageAt(address);
       self.code = await getCode(address);
@@ -119,7 +119,7 @@ block contents
 
       self.transactionCount = await getTransactionCount(address);
 
-      self.balance_usd = await getC4EIUSD(web3.utils.fromWei(app.balance, 'gwei'));
+      self.balance_usd = await getC4EIUSD(web3.utils.toBN(app.balance, 'gwei'));
     }
 
     

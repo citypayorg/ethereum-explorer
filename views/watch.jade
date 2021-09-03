@@ -41,7 +41,7 @@ block contents
         if( watchs ) {
           this.watchs = JSON.parse(watchs);
         }
-        this.watchs.forEach(watch => getBalance(watch.address).then(r => watch.balance = web3.utils.fromWei(r, 'gwei') + ' C4EI'));
+        this.watchs.forEach(watch => getBalance(watch.address).then(r => watch.balance = web3.utils.toBN(r, 'gwei') + ' C4EI'));
       },
       methods: {
         onDel: function(index) {
@@ -73,7 +73,7 @@ block contents
               this.address = "";
 
               // 잔액 조회
-              getBalance(watch.address).then(r => watch.balance = web3.utils.fromWei(r, 'gwei') + ' C4EI');
+              getBalance(watch.address).then(r => watch.balance = web3.utils.toBN(r, 'gwei') + ' C4EI');
            });
         }
       }
@@ -118,7 +118,7 @@ block contents
     //- web3.eth.filter("latest", function(error, result){
     //-   if (!error) {
     //-     console.log('block created!', result);
-    //-     app.watchs.forEach(w => getBalance(w.address).then(r => w.balance = web3.utils.fromWei(r, 'gwei') + ' C4EI'));
+    //-     app.watchs.forEach(w => getBalance(w.address).then(r => w.balance = web3.utils.toBN(r, 'gwei') + ' C4EI'));
     //-     //filter(result);
     //-   }
     //- });
