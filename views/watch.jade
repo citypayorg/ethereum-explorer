@@ -50,7 +50,7 @@ block contents
           window.localStorage.setItem("watchs", JSON.stringify(this.watchs));
         },
         onAdd: function() {
-          if( !web3.isAddress(this.address) ) {
+          if( !web3.utils.isAddress(this.address) ) {
             alert('올바른 주소를 입력하세요.')
             return false;
           }
